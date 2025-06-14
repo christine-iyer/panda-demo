@@ -24,3 +24,13 @@ print(data.head())
 output_path = 'democracy-index-eiu/cleaned_democracy_index.csv'
 data.to_csv(output_path, index=False)
 print(f"Cleaned data saved to {output_path}")
+
+#Read in the data in the zip file
+import zipfile
+zip_file_path = "democracy-index-eiu/democracy-index-eiu.zip"    
+with zipfile.ZipFile(zip_file_path, 'r') as zip_ref:
+    zip_ref.extractall("democracy-index-eiu/extracted_data")
+# Read the extracted CSV file
+extracted_file_path = "democracy-index-eiu/extracted_data/democracy_index.csv"
+extracted_data = pd.read_csv(extracted_file_path, encoding='latin1')
+print(extracted_data.head())
